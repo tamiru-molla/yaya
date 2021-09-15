@@ -1,0 +1,13 @@
+body{
+ background-color: darkslateblue;
+}
+a{
+ color: white;
+ display: inline-block;
+ margin: auto;
+ 
+ 
+}
+p{
+ text-align: center;
+}
