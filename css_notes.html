@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en"> 
+ <header>
+   
+  </header>
+  
+  <body>
+    <pre>
+    <xmp>
+
+CSS Selectors 
+- global selector - *{}
+- type selector - h1,p,h2 {}
+- class selector - .main {} , p.main {}
+- id selector - #top
+- child selector - li>a {} - any  a only children of li
+- descendant selctor - p a {} - any a inside p
+- adjacent sibling selector - h1+p {} -  first sibling of h1
+- general sibling selector - h1~p {} - any sibling of h1
+                           - sibling is any element sharing same    parent
+
+Attributes Selectors //
+
+Existance - p[class] - p with attrib class
+Equality  - p[class="intro"] ---> p.intro{}
+Space - p[class~="intro"] 
+     - list of space separated words 1of wc is "intro"
+Prefix - p[attr^="do"]- an attribute start with "do"
+Substring - p[attr*="do"] - attrib contain letters "do"
+Suffix - p[attr$="do"] - attrib ends with "do"
+
+  attr --> can be id, class 
+         - any attrib specified in that element
+
+
+CSS rules
+- last rule - always keep new css declarations(rgba()) at last 
+            - bc it might be ignor by old browser and add additional
+              before new css declaration
+- specificity - p a{} is take precedence of a{}
+- !important - color: blue !important - take precedence of all rules
+
+Colors (color:)
+ - RGB - rgb()
+ - RGBA - rgba()
+ - HEX - #efefef
+ - NAME - red
+ - HSL(hue, saturation, lightness) - hsl(45deg,50%,45%)
+      hue- its a color circle
+      saturation - amount of grey color in the color 
+      brightness - amount of black color is in the color
+      lightness - amount of white/black color 
+
+Font (color, font-family, font-size)
+
+Font family (font-family:) 
+      - if it has >1 word it should be inside single quoate
+      - good practice to end with generic fonts
+   generic fonts (mostly supported by all browsers 
+                   atleast 1 from each group)
+     * serif - @zend of fonts-stroke
+             - georgia,times,'times new roman'
+     * 'sans serif' - straight ends 
+                  - Arial, Verdana, Helvetica
+     * monospace - same width
+                 - courier, courier new 
+     *cursive - hand writing style
+              - 'comic sans MS', 'monotype corsiva'
+     * fantasy - decorative fonts 
+               - impact, haettenschweiler
+
+Font size
+ - default browser text size= 16px;
+ - rem - root document(*{}), 
+ - em - relative to parent element
+ - 1rem = 16px; (h1=200%=32px,h2=150%=24px, body=100%=16px)
+ - point - 1/72 of an inch (most cptr = has 72 dots per inch)
+         - mostly for printer friendly pages
+
+font-weight - bold, normal, 500px
+
+text-transform : uppercase lowercase capitalize
+
+text-decoration : underline overline linethrough none
+
+line-height : vertical gap bn lines (best in em - 1.4em)
+
+letter-spacing - 0.2em 
+
+word spacing - 1em
+
+text-align : left right center justify 
+     - justify : everyline except last line of <p></p>
+       take full width
+
+vertical-align : baseline top bottom middle text-top text-bottom
+                 supper sub
+              - for inline elements
+              - for <td> <th>
+
+text-indent : 20px | 2em
+
+text-shadow : 10px 10px 10px #ff0
+             (left(-)/right)  top(-)/bottom shadow-blur  color 
+
+margin : extra space around the element;
+       : Top | Right | Bottom | Left 
+       : Top | Horizonatl | Right
+       : Vertical | Horizontal // 2px auto;- T and B - 2px,horizontal center
+       : All (5px;) 
+       : auto \\ T and B =0px;  hosrizontal - center
+padding : extra spce within the element
+
+
+pseudo-elements
+:first-line - p:first-line{} - 1st line of text
+
+:first-letter - p:first-letter{} - 1st letter of text
+
+pseudo class 
+
+styling link - 
+  - a:link{} 
+  - a:visited{}
+  - a:hover{} // input.submit:hover{}
+  - a:active{}  - when button/link is activated
+responding to user 
+  - a:hover{} 
+  - a:active{}
+  - input.text:focus {}
+
+==> should appear in this  order 
+     --> :link :visited :hover :focus :active 
+
+  ======== // =============
+
+  CSS-LAYOUT
+  1 - Normal flow - blcok and inline (like stack)
+  2 - Positioning
+    # position:static 
+       - normal flow of elements
+    # position:relative  / TRBL
+       - moved element relative to wr it 
+         would have been in normal flow
+    # position:absolute 
+       - element out of normal flow
+       - relative to its containing block 
+    # z-index 
+        - when elements overlap
+        - relative /absolute / fixed
+        -> the higher the # the closer
+           to the front
+    # position:fixed 
+       - relative to view port 
+       - out of normal flow
+       - doesnt move while scrolling
+      ==> containg block
+        position:static/relative/sticky 
+            -nearest ancestor element
+       position : absolute 
+            - non static ancestor element 
+       position :fixed 
+            -viewport(continous media) 
+              /page area (paged media)
+  3 - floats
+       - place element to right or Left
+       - to place elements next to each other
+       - float:right / float:left 
+       - floats can be cleared 
+           clear : left/right/both/none 
+       - can be used to creat multi-column layouts
+           - by set each block to float left 
+             with coresponding dimention and margin
+      
+
+
+  4 - flexbox 
+     - 1D layout system (row or columens)
+     - container element (diplay : flex)
+     - flex item (flex : flex_grow flex_shrink flex_basis)
+                 ( flex : 1 0 auto)
+        . Flex_grow - +ve space in parent conatiner
+                    - (>= 0) - ( flex : 1  0  auto)
+        . Flex_shrink - -ve space in parent cont
+                      - (>= 0) - ( flex : 0 1 auto)
+        . flex_basis  - item size b4 grow or shrink 
+                      - assigning initial width for each
+                        item before sharing available space
+                        then saring will br according to the
+                        proportion unit
+                      - (auto, 0, size) - ( flex : 1 0 auto)
+                      - [1 2] is same as [50 100] bn items
+     ==> flex-flow : row wrap 
+         - flex-direction : column (default : row) 
+                       (row-reverse, column-reverse)
+         - flex-wrap : wrap  with flex:width_px; 
+                     - for fixed container size  overflow 
+                       might be occur                
+    * (diplay:inline-flex) -> (parent behave like inline)
+                           -> ( child as flex item ) 
+   ==> controling alignment (apply on flex container) 
+    # align-items : flex-start/flex-end/center//baseline/streach(def)
+        - column access alignment
+        
+    # justify-content : flex-start/flex-end/center/
+                      space-around/space-between 
+        - row access alignment
+        
+    # align-content :flex-start/flex/end/center 
+                  space-between/space-around 
+        - when there is >1 row (wraped items)
+        - column access alignment 
+        - apply on each row of items.
+  
+    # align-self and justify-self 
+       - apply for each individual
+    
+
+  5) Grid - 2D layout system
+    --> (@  grid container) 
+    {
+    display : grid  
+    grid-template-columns : 1fr 1fr 1fr (3 col) 
+                          : repeat(3, 1fr)
+                          : minmax(10px,20px) 1fr 1fr
+   - for dimention we can use minmax() mtd   
+    --> minmax(min_size,max_size)  
+
+    grid-template-rows : 1fr 2fr  (2 rows)
+          - draw grid lines 
+          - its distance bn each line (1 2 3 4) by 1 2 3 
+          - fr (fraction - proportional to container spoace)
+    grid-auto-rows : 100px; // if total # cell 
+                           not enough for all grid items
+    grid-column-gap : 2px;
+    grid-row-gap : 2px;
+    grid-gap : 2px; --> general form
+     => then grid items populated from top-left to
+        botom-right basd on HTML src order
+    grid-auto-flow : column  // default is row
+    } 
+    
+  --> grid item 
+   to place each item  where we want  
+     
+-->  line based grid map mtd
+          * asign start and end grid lines
+          * time consumer
+   @ grid item 
+    {
+      grid-column : 2/4  (2 / span 2) //same
+                   bn line 2 and line 4 in coll lines
+                  : 1 / -1  (-1 is end line )
+      grid-row : 1/3 bn line 1 and line 4 in row lines
+              : 5 (start at row 5) 
+      order:1 (top left )
+    }
+
+  -->  text based grid map mtd
+          * by assign area name to each cells  
+          * by changing map order we can get d/t layout 
+            for d/t devices  
+          * Accessible mobile first layout work 
+            well on all screen width
+          
+   @ grid container
+   {
+     grid-template-areas:
+     " title title title "
+     " main header header "
+     " main footer footer ";
+
+    ==>  ..... can  be used as empty cell
+   }
+   @grid item for each
+   {
+     .title {grid-area :[area-name]} // title
+
+   }
+
+   ==> to test for grid support use feature queries
+    @support(display:grid) {...}
+
+  ==> align and justify
+   @grid container 
+   {
+     align-items : start/end/center/streach(def)
+        - column access alignment
+        - apply in each grid items
+     justify-items : start/emd/center/streach (def)
+        - row access alignment
+        - apply in each grid item 
+
+     align-content : start/end/center/space-between/
+                          /space-around /
+       - apply for grid container  
+     justify-content : start/end/center/space-between/
+                          /space-around /
+       - apply for grid container  
+   } 
+  @ grid items 
+  {
+    align-self : start /end/center/streach
+    justify-self : start /end/center/streach/
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+   </xmp>
+   
+  </body>
+</html>

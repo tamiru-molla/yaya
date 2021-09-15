@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Document</title>
+</head>
+
+<body>
+
+ <xmp style="font-size: larger;">
+
+=> Object property shorthand 
+   const name="mike"
+   const url="https://.."
+   const ageOut=12;
+
+   const x= {name:name, url:url,age:ageOut}
+   # shorthand -> product ={name,url,age:ageOut}
+     - if the property of the obj has same name as variable assigned to its value
+       we can  remove : and variable name 
+
+  => obj destructuring
+    const Objname = product.name  // how we acces each obj property
+   # using obj destructuring 
+       # {name,url,age} = product
+       # const objName = name;
+       - if fuction has callback as argument 
+        geocode ("etrhiopia",(err,{coordinate})=>{
+          - wizout destructuring we have to call
+            - response.coordinate
+          - with destructuring
+            - just coordinate
+        })
+
+
+
+
+
+
+
+
+  web server
+  - modules needed - express
+                    - hbs // handlbars
+                    - path // core modules
+   -our project have the ff structure
+     .src/ 
+       - app.js
+     .public/  // static directory to serve 
+       - style/styles.css 
+       - script/scripts.css
+     .templates/ 
+        - views/  // response to request using end point
+            # index.hbs
+            # about.hbs  ..// templates for each html pages 
+            # 404.hbs         - render by hbs engine
+               
+        - partials/   // page components appear in all pages
+            # header.hbs 
+            # footer.hbs
+            # sidebars
+   1) import all packages;
+    
+   2) define paths for express 
+    
+    # const publicDirPath = path.join(__dirname,"../public")
+    # const partialDirPath = path.join(__dirname,"../templates/partials")
+    # const viewsDirPath = path.join(__dirname,"../templates/views")
+
+   4) setup static directry to serve
+    
+   # app.use(express.static(publicDirPath))
+
+   5) setup handlebar engine and views locations
+    
+    # app.set("views engine","hbs")
+    # app.set("views",viewsDirPath)
+    # hbs.registerPartials(partialDirPath);
+
+   6)  response for requests
+    
+    # app.get("endPoints",(req,res)=>{   // endPoint='/', '/about'
+     
+     res.send(string | Json ...)
+     res.render("target_template", { json passed to templates})
+           target_template -> 'index.html', 'about.hbs',
+           json -> {title:'home' | title:'about', name: 'mike'}
+    })
+   
+   7) response for error
+        - endPoint = "*" -- any  unmatched endpoint
+        - endPoint = "/help/*" -- any unmatched endpoint preceding with /help
+
+   8) start server
+       # apt.listen(3000,()=>{log("server- started")})
+
+
+
+
+
+ 
+</xmp> 
+  
+</body>
+</html>

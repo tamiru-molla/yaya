@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+ 
+<xmp style="font-size: larger;">
+HTML elements
+
+- defined by starting tag.
+- elements wiz content ends
+  wiz ending tag
+- some of zen don't need to be
+  closed.
+   => called  void elements
+       ( empty element )
+            . <br>, <hr>, <img ...>, <meta>
+
+=> Heading tags. #6 <h1></h1> .... <h6></h6> -block element
+=> Paragraph tag. <p>...</p> -- block element
+=> Line break tag - <br>  
+=> Horizontal line - <hr > -- block element
+    - frm curent pos to right margin
+=> Non breaking space / no break   
+      &nbsp; / <nobr>...</nobr>  
+- to keep texts in the same line.
+- this&nbsp;is&nbsp;my&nbsp;boy
+- <nobr> this is my boy </nobr>
+=> Preserve formating - <pre>...</pre> -block element
+
+HTML Attributes 
+
+ # basic 
+
+- style - to specify css rules inside element
+- id - unique identifier for each element
+- title - tooltip wn cursor hover an element. 
+- class - link elements with css
+
+# Internationalization
+
+- dir - text flow direction 
+      - (ltr(default), rtl (hebrew,arabic))
+- lang - main language in document 
+       - put in <html lang="en"> ;
+
+# General 
+vertical-align : top, bottom, middle
+text-align : left, center, right
+background : url, color
+width :numeric
+height : numeric
+
+
+HTML Formating (inline elements)
+
+- bold - <b>..</b>
+- italic - <i>..</i>
+- underline - <u>...</u> - phased out
+     -insert - <ins>--</ins>
+- strike - <strike>... </strike>
+     - delete - <del>...</del>
+     - no longer relevant or accurate <s>...</s>
+- monospaced (tele-type) font - <tt>...</tt>
+- superscript Text - <sup>...</sup>
+- subscript Text - <sub>...</sub>
+- Larger Text(+1 size) - <big>...</big>
+- small Text (-1 size) - <small>...</small>
+
+Grouping content
+
+- used with  block-level elements - <div >...</div>
+     - its good habit to use comment afterclothing tag of div
+       to make our code readable
+- used with inline elements - <span>...</span>
+
+
+HTML Phrase tags (inline elements except specified)
+
+- empasized Text (italic) - <em>...</em>
+- reference other works (italic)<cite></cite>
+- programingc variable(italic) - <var>...</var>
+- special term (italic) - <dfn>...</dfn> 
+- Address Text(italic)  - <address>...</address> -block
+- marked Text(mark wiz yellow color) - <mark>...</mark> 
+- strong Text (bold)- <strong>....</strong>
+- Text abbrevation - <abbr title="because">bc</abbr>
+- Quoting Text (frm anzr para) - <blockquote>.</blockquote> -block
+                               - indent the content // center
+                               - no quotetion mark
+- short quotation (double quote) - <q>...</q>
+- computer code (monospaced) - <code>...</code>
+- keyboard Text (monospaced) - <kbd>..</kbd>
+- program output (monospaced)- <samp>....</samp>
+
+HTML Meta tags
+
+- additional information about the document
+- inside <head> element
+Attributes
+ -> name - property (keyword, author...)
+ -> content - property's value
+ -> scheme - scheme to interpret content
+ -> http-equiv - 4 http response msg headers 
+             - (to refresh the page, to set cookie)
+
+Specifiying keyWords (used by search engines)
+Document description (used by search rngine)
+Revision date
+Document Refreshing (in second)
+Setting autor name.
+Specify charset
+<meta name="keywords" content="HTML, Meta Tags, Metadata" /> 
+<meta name="description" content="Learning about Meta Tags." /> 
+        - 155 char max, showed in search result
+<meta name="revised" content="Tutorialspoint, 3/7/2014" />
+<meta name="robots" content="nofollow" /> 
+        - linked page not included in search result
+        -/noindex/ search engine will add page to result
+<meta http-equiv="refresh" content="5" />
+<meta name="author" content="mike zcode"/>
+<meta  http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+<meta  http-equiv="expires" content="date_xxxx">
+
+HTML Comments
+
+- singleline <!-- coment  -->
+- multiline <!-- 
+              multi line  comment
+            -->
+- conditional comment
+    - for IE 5 and onwards
+    - ignored by other browsers
+    - to use d/t style sheet 
+   <!--[if IE 6]>    
+    Special instructions for IE 6 here 
+    ignored by another browsers;
+    <![endif]-->
+
+
+HTML Image -<img src="./myPic.jpeg" alt="my image">
+           - format -jpeg - pic with many colors
+                    -gif, png - pic wiz few colors and large area
+                                of same color (flat images)
+                              - logos, diagrams..
+           - only dimention mater for web images/ not resolution
+           - resolution matter for print pictures
+           -<figure> - grouping image
+           -<figCaption> - caption for images 
+HTML Tables - <table> ...</table>
+ table row - <tr> </tr>
+ table heading (bold td) - <tr> <th>..</th> </tr>
+ table data(cell) - <tr> <td>..</td> </tr>
+ joining rows -  <td rowspan="2"> </td> 
+ joining colls - <td colspan="3"></td>
+ thead - header - <thead><tr><td colspan="3">...</td></tr></thead>
+ tbody - main body - <tbody>table content</tbody>
+ tfoot - footer - <tfoot><tr><td colspan="3">...</td></tr></tfoot>
+
+
+ HTML List 
+ unorder list - <ul type="square,circle,disk">   <li>...</li>   </ul>
+ ordered list - <ol type="1,A,a,i,I" start="5"> <li>...</li></ol>
+   list-style-position (inside,outside) - relative to content flow
+             -type (upper-alpha,upper-roman,upper-latin)
+                   (lower-alpah, lower-roman,lower-latin,lower-greek)
+             -image (url("./image.jpeg"))
+
+  definition List - <dl> </dl> 
+  term - <dt></dt>
+  term -definition  - <dd> </dd>
+    <dl>
+      <dt> HTML</dt>
+      <dd>Hyper Text Markup Language</dd>
+    </dl>
+
+
+ HTML Links - <a href="" target=""></a>
+  
+ - target -> _blank (new page)
+             _top(full body of the window), 
+             _parent (on parent frame) 
+             _self (same frame)
+
+- href("document path") 
+   - www.google.com - link to different site
+   - #top (/html/localvar.html#top) - some part of the page
+   - can be absolute path or relative 
+
+- base path
+   -in the <header> <base href="www.mike.com"></header>
+   -on our doc we with only relative path  <a href="/file/book.pdf"></a>
+   - complete path will be concatinbation of base and relativepath
+   --> "www.mike.com/file/book.pdf"
+
+link color
+ - specified in <body> tag 
+    *link - link color
+    *alink - active link
+    *vlink - visited link
+
+image link - <a href="#..."><img src="./big.jpeg" alt="tutorial"></a>
+   - content will be image instade of text link
+
+HTML Eamil - 
+ * we can add default subject and body 
+ * <a href="mailto:tamiru@gmail.com?subject=feedback&body=Dear sir,"> 
+       Send Email to Tamiru </a>
+  
+Html iframe -  <iframe 
+                src="index.html" // https://wwww.youtube.com/...
+                name="menu_page" 
+                width="50%"  height="50px" 
+                frameboarder="1" >content
+              </iframe>
+
+  - inline frame wz border and scrollbars
+  - to load another document in the same page.
+  - content can be -> browser doesn't support iframe
+  - frameboarder - can be 1 or 0;
+   - <a href="contac.html" target="menu_page"></a>
+
+
+HTML Blocks 
+ - block element
+    - insert new line b4 and after element
+    - <p>, <h>, <blockquote>, <address>, <ol>, <ul>, <dl>, <pre>, <hr>..
+ - inline element
+    - no new line 
+    - <img>, <b>,<strong>, <sub>, <sup>, <em>, <b>, <b>, <b></b>.
+
+
+HTML Colors - color:red;background-color:#fff
+-color name - red;
+-hexDecimal - #FF0000;
+-rgb - rgb(255,0,0);
+-rgba - * rgba(255,0,0,a); 
+        * 0<=a<=1 - opacity
+        * 1 - no transparent  & 0 - fully transparent // a=alpha
+- hsl - hsl(45,100%,50%); 
+       - (hue(0 to 360 degree)    
+       - saturation (0-100%)
+       - lightness (0-100%)
+- hsla - hsla (hsl + opacisty)
+
+       
+HTML Forms - <form > ... </form>
+
+Attributes
+action ("action.php") - wr to send form / form handler
+method ( post/get )- http mtd wn submitted form
+     - get - append input data with URL as plain text 
+           - 2048 character
+           - result can  bookmarked
+           - default
+           - ...com/name=mike&lname=zcode
+     - post - append i/p data in body of http request
+            - no limit
+            - can not be bookmarked 
+            - secure
+            -  ...com/h&y?=12gh?
+autocomplete (on / off)
+target (_blank, _self, _parent) - wr to display the result
+enctype - for post method only 
+        - encode type while sending form 
+name - name of  the form
+
+Form elements
+- <input> differnt inputs depending on type attribute
+- <label for="id_of_target_element">...</label> 
+          - define label for target elements
+          - for screen-reader 
+          - for selecting small elements
+          
+-<select> <option value="dell" selected>Dell</option></select>
+          - drop down list 
+          - Attributes
+           - selected(option) disabled,enabled(both)
+           - size="3" - number of visible values
+           - multiple - multiple selection 
+                      - work with (size attrib)
+          
+- <textarea name="" cols="" rows="">..</textarea > 
+          - visible width and height of tarea
+          - placeholder - hint for the user
+- <button type="button" onclick="..."></button>
+          - type=submit, reset, image.
+          - clickable buttonrance
+          -  posible to combin text and image for buttons -good apperance
+          - type must be specified
+- <fieldset>&<legend>
+     <fieldset> <legend>User Info</legend>...</fieldset>
+          - ... input elements
+          - group related data
+          - legend - caption for fieldset
+- <datalist id="refer to list_attribute_of_input_element"> 
+  <option value="..."> </datalist>
+          - pre-defined options as drop down list for
+            input element
+- <output> - define rersult of a calc.
+
+
+
+  HTML Input Type
+  - <input type="text" size="" pattern="" placeholder="">
+  - <input type="password" size="" pattern="" placeholder="">
+  - <input type="submit" > - submit data to form handler
+  - <input type="image" src=""> - image for submit button
+  - <input type="reset" > - reset to default value
+  - <input type="radio" name="" > - all btn got same name attrib
+  - <input type="checkbox" > - all btn got same name attrib
+  - <input type="button" onclick="">
+  - <input type="color" >
+  - <input type="date" min="" max="" pattern="">
+           type="week", type="month",time
+  - <input type="datetime-local" >
+  - <input type="email" multiple pattern="" placeholder="">
+             - validated depending on the browsers
+  - <input type="file" multiple> - to browse file , method=post can't be get
+  - <input type="range" min="" max="">
+  - <input type="number" min="" max="" >- numeric i/p
+  - <input type="search" pattern="" size="" placeholder="">
+  - <input type="tel" pattern="" size="" placeholder="">
+  - <input type="url" size="" pattern="" placeholder="">
+
+
+  Input Restriction  
+
+ - checked	- pre-selected i/p field
+ - disabled	- that an input field should be disabled/unusable
+ - max/min	- the max/min value for an input field
+ - maxlength	- the max  char i/p
+              - need additional js code to notify
+ - pattern	- reg-exp to check the input value against
+            - [0-9]{3} ,[A-Za-Z], "[Bb]anana | [Cc]herry"
+ - readonly	
+ - required	
+ - size	- the width (in characters) of an input field
+        - default = 20
+ - step	- number intervals for an input field (0,5,10..)
+ - value	Specifies the default value for an input field
+ - placeholder  - not Restriction
+                - hint 
+ - autofocus 
+ 
+</xmp> 
+  
+</body>
+</html>
