@@ -17,20 +17,26 @@
 
    const x= {name:name, url:url,age:ageOut}
    # shorthand -> product ={name,url,age:ageOut}
-     - if the property of the obj has same name as variable assigned to its value
-       we can  remove : and variable name 
-
+    
   => obj destructuring
     const Objname = product.name  // how we acces each obj property
    # using obj destructuring 
-       # {name,url,age} = product
+       # const {name,url,age} = product
        # const objName = name;
+       # const {name:newName,url,age,start=5} = product // start is default
+       # const objName = newName; 
+            -  posible to change property name during destructuring obj 
+            -  assign default value also posible
        - if fuction has callback as argument 
-        geocode ("etrhiopia",(err,{coordinate})=>{
+        geocode ("etrhiopia",(err,{coordinate})=>{ 
+           // assigning default value to destructured obj
+              -> geocode ("etrhiopia",(err,{coordinate}={})=>{
           - wizout destructuring we have to call
             - response.coordinate
           - with destructuring
             - just coordinate
+
+          
         })
 
 
@@ -85,7 +91,7 @@
      res.send(string | Json ...)
      res.render("target_template", { json passed to templates})
            target_template -> 'index.html', 'about.hbs',
-           json -> {title:'home' | title:'about', name: 'mike'}
+           json -> {title:'Home' | title:'About', name: 'mike'}
     })
    
    7) response for error
@@ -96,6 +102,14 @@
        # apt.listen(3000,()=>{log("server- started")})
 
 
+- calling partials in a pages
+   <body>
+     {{>header}}
+   </body> 
+   @ header partials
+    we can access json object forward by res.render 
+       -<h1>{{title}}</h1>
+  
 
 
 

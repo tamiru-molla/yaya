@@ -1,6 +1,8 @@
 const express = require("express")
 const hbs = require("hbs")
 const path = require("path")
+const geocode = require("./utils/geocode")
+const forcast = require("./ utils/forcast")
 
 const app =express();
 
@@ -15,20 +17,38 @@ app.use(express.static(publicDirPath))
 // setup handlebar engine and views locations
 app.set("views engine","hbs")
 app.set("views",viewsDirPath)
-hbs.registerPartials(partialDirPath);
+hbs.registerPartials(partialDirPath); 
 
 app.get("/",(req,res)=>{
   res.render("index.hbs",{
    name:"mike",
-   title:"Home"
+   title:"Weather"
   })
 })
-app.get('/about',(req,res)=>{
+app.get('/about',(req,res)=>{ 
   res.render("about.hbs",{
    name:"mike",
-   title:"About"
+   title:"About Us"
   })
 })
+app.get('/help', (req, res) => {
+  res.render("help.hbs", {
+    name: "mike",
+    title: "Any Help"
+  }) 
+})
+app.get('/weather', (req, res) => { 
+  
+  if(!req.query.address)return res.send({error: "eneter valid address"})
+  geocode(req.query.address,(error,{coordinate,place_name}={})=>{
+    
+    if(error)return res.send({error:error})
+    forcast(coordinate,(error,{ forcast }={})=>{
+      if(error) return res.send({error:error})
+      res.send({address : place_name ,forcast})
+      })
+   })
+ })
 
 app.get('/help/*', (req, res) => {
  res.render("404.hbs", {
@@ -42,11 +62,11 @@ app.get('*', (req, res) => {
  res.render("404.hbs", {
   name: "mike",
   title: "404",
-  error :"not Found"
+  error :"page not Found"
  })
 })
 
 
 
 
-app.listen(3000, () => console.log("Server starts at port 3000"))
+app.listen(3000, () => console.log("Server is up on port 3000"))

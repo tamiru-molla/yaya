@@ -3,8 +3,9 @@ const geocode = require('./utils/geocode.js');
 const forcast = require('./utils/forcast.js');
 
 const address = process.argv[2];
+console.log(address)
 
-geocode(address,(err,{coordinate,place_name})=>{
+geocode(addres,(err,{coordinate,place_name})=>{
 
      if (err) {
           console.log(error)
