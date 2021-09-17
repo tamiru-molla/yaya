@@ -1,0 +1,82 @@
+.box>h1{
+  width:800px;
+  height: 800px;
+  animation: q1 2s  3s alternate infinite;
+}
+@keyframes q1 {
+  from{
+    color: blue;
+  }
+  50%{
+    color: yellow;
+  
+  }
+  to{
+    color: purple;
+  }
+  
+}
+
+/* #container {
+  display: flex;
+}
+
+#container>div {
+  border: 1px solid red;
+  width: calc(100vw / 3)
+}
+
+@media screen and (max-width:500px) {
+  #container {
+    display: flex;
+    flex-direction: column;
+  }
+  #container>div {
+    width: 100%;
+  }
+} */
+
+/* .animated{
+  width : 200px;
+  border: 2px solid black;
+} */
+
+#container1 {
+  position: static;
+  top: 100px;
+  left: 100px;
+}
+
+#box1 {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 30px;
+  left: 40px;
+}
+
+#container2 {
+  position: absolute;
+  top: 500px;
+  left: 500px;
+}
+
+#box2 {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 100px;
+  left: 50px;
+  background-color: red;
+  transition: transform 3s ease;
+}
+div{
+  border: 1px solid red;
+}
+
+#box2:hover{
+  transform: scale(1.5);
+}
+p{
+  color: orange;
+}
