@@ -23,7 +23,7 @@ hbs.registerPartials(partialDirPath);
 app.get("/",(req,res)=>{
   res.render("index.hbs",{
    name:"mike",
-   title:"Weather"
+   title:"Work Hard Play Hard"
   })
 })
 app.get('/about',(req,res)=>{ 

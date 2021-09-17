@@ -1,5 +1,4 @@
 const request = require("request");
-const geocode = require("./geocode.js");
 
 const forcast = (coordinate, callBack) => {
  
