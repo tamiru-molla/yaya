@@ -111,10 +111,69 @@
        -<h1>{{title}}</h1>
   
 
+MONGODB 
+ 1- download mongodb 
+      - extract it in user/tam/mongodb folder 
+ 2) - create storage folder user/tam/mongodb-data 
+ 3) - livein up  the db 
+    - user/tam/mongodb/bin/mongodb.exe --dbpath=user/tam/mongodb-data
+ 4)  install --> robo-3T
+        - mongodb admin GUI tool
+    - connect tool with our db using 
+        IP= 127.0.0.1
+        port = 27017
+        name = any name // Local Mongodb database
 
+    - check connection by by # db.version() on shell
+ 5) install mongodb packge in our nodejs project
+ 6) connect our node.js and Mongodb 
+    
+    const  mongodb = require("mongodb")
+    const  MongoClient = mongodb.MongoClient
+    const  connectionUrl = "mongodb://127.0.0.1:27017"
+    const  databaseName = "database-one"  // same name will be created in mongodb-data
+    MongoClient.connect(connectionUrl       // url to our localdb
+                       ,{useNewUrlParser:true}  // set parser
+                       ,(error,client)=>{
+                       if(erroe) return "connection failed"
+      # create database reference 
+       const db = client.db(databaseName)  
+       
+      # creat collection and insert data 
+       db.collection("user").insertOne({jsonUserDataToBeInserted})
+                       })   // callback for our connection
+
+
+  Mongodb data structure
+   #Collection 
+      - we will have a Collection for each kind of  related datas
+      - Collection for user, products, favorites -- like table in SQL
+   #- document  -- 
+      - each entry data into the collection 
+      - like row of table in SQL
+   #- fields 
+      - individeul  data stored in field 
+      - column in table 
 
  
-</xmp> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </xmp> 
   
 </body>
 </html>
