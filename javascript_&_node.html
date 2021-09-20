@@ -78,6 +78,11 @@
     
    # app.use(express.static(publicDirPath))
 
+   4.1) for POST type form we need conmftgure body parser for express
+             - query parser is default
+
+   # app.use(express.urlencoded({ extended:false }))
+
    5) setup handlebar engine and views locations
     
     # app.set("views engine","hbs")
@@ -111,56 +116,66 @@
        -<h1>{{title}}</h1>
   
 
-MONGODB 
- 1- download mongodb 
-      - extract it in user/tam/mongodb folder 
- 2) - create storage folder user/tam/mongodb-data 
- 3) - livein up  the db 
-    - user/tam/mongodb/bin/mongodb.exe --dbpath=user/tam/mongodb-data
- 4)  install --> robo-3T
-        - mongodb admin GUI tool
-    - connect tool with our db using 
-        IP= 127.0.0.1
-        port = 27017
-        name = any name // Local Mongodb database
-
-    - check connection by by # db.version() on shell
- 5) install mongodb packge in our nodejs project
- 6) connect our node.js and Mongodb 
-    
-    const  mongodb = require("mongodb")
-    const  MongoClient = mongodb.MongoClient
-    const  connectionUrl = "mongodb://127.0.0.1:27017"
-    const  databaseName = "database-one"  // same name will be created in mongodb-data
-    MongoClient.connect(connectionUrl       // url to our localdb
-                       ,{useNewUrlParser:true}  // set parser
-                       ,(error,client)=>{
-                       if(erroe) return "connection failed"
-      # create database reference 
-       const db = client.db(databaseName)  
-       
-      # creat collection and insert data 
-       db.collection("user").insertOne({jsonUserDataToBeInserted})
-                       })   // callback for our connection
-
-
-  Mongodb data structure
-   #Collection 
-      - we will have a Collection for each kind of  related datas
-      - Collection for user, products, favorites -- like table in SQL
-   #- document  -- 
-      - each entry data into the collection 
-      - like row of table in SQL
-   #- fields 
-      - individeul  data stored in field 
-      - column in table 
 
  
+========================== uploading files  ====================
+ 
+<form  method="POST" enctype ="multipart/form-data "></form>
+<input type="file" name="imageFile" accept=".exetName,..." multiple>
+        => accept - specify allowed file type               
+     form enctype  types
+                 - application/x-www-form-urlencoded
+                       - default 
+                       - all character encoded (space -> + or %20 ,special characters to ASCII)
+                 - text/plain 
+                       - no encoding
+                 - multipart/form-data
+                       - when we uoload file
+
+=> required package - multer  
+1) import and configure multer
+    
+ #  const multer = require('multer')
+ #  const upload = multer({dest : pathToSaveFile})  // default path to uploaded file
+ 
+ - upload obg used to upload single or multFile 
+  app.post("/",upload.single("ValueOfnameAttribute"),(req,res){})
+      - file property added to req Obj by multer
+
+       req.file -- file
+       req.body -- text content
+
+      - file have 3 properties
+           . path 
+           . orginalName
+           . size
+
+ -> uploaded file is in binary format 
+        - we need to rename it to its orginal file name 
+
+      require("fs").renameSync(req.file.path, newPath/${req.file.orginalname})  (rename to move file)
+
+-> uploading multiple files 
+
+A) from one FiledName --- @ input:file - name:fieldName
+
+  # upload.array(FiledName,maxCount)
+     - req.files ->>>>> aray of files
+
+B) from multiple fieldNames 
+
+ # upload.fields([{name:'photo',maxCount:3},{name:'gallery',maxCount:9}])
+    
+     -req.files ---->>> object (key:FiledName, value= aray of files)
 
 
-
-
-
+ =====  processing images
+ app.post("/", upload.single("im"), async(req, res)=>{
+   
+   fs.renameSync(oldFileName,newFileName);
+   const image = await jimp.read(newFileName);
+   image.resize(320, jimp.AUTO);
+   await image.write(`./public/images/thumbnails/${fileInfo.originalname}`)
 
 
 
