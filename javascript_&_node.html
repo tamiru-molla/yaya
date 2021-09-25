@@ -177,13 +177,139 @@ B) from multiple fieldNames
    image.resize(320, jimp.AUTO);
    await image.write(`./public/images/thumbnails/${fileInfo.originalname}`)
 
+============= COOKIE ================= 
+CLIENT SIDE COOKIE 
+  # creating cookies
+
+   => document.cookie = " cookieName = cookieValue ; expires=" date in UTC time formate ; path = "/"
+      - expires can be replaced with max-age= expired date in second
+        --- max-age=24*60*60 -- 1day
+
+  # retrieve cookies 
+
+   const cookie = document.cookie; 
+     => string of of cookie with name value pair 
+         cooki1 = value1;cookie2=value2...
+
+    => good practice to decode cookies 
+         decodeURIComponent (cookie) => unecoded cookie 
+          - if we create cookie of URL, it might be contain encoded URI
+            express (app) ==> express%20%28app%29 -- encoded URI 
+
+  # deleting cookie --
+      - assigne 0 time for expires or max-age or past  date 
+
+    document.cookie(cookieName = ; max-age=0)
+
+SERVER SIDE COOKIE
+
+  - need cookie parser
+ =>const  cookieParser  require ("cookie-parser")
+   # app.use(cookieParser())
+
+#creating cookie 
+ ==> we use response object 
+     res.cookie(cookieName,cookieValue,{option:optionValue,...})
+       - options 
+         expires : Date in GMT 
+           - if not specified -> a session cookie
+         maxAge : expire time in ms relative to current 
+                  time
+         path : pathForCookie -- def = "/" = current page
+
+# retrive cookies 
+
+ ==>  we use request Object
+
+  const cookies = req.cookies; 
+     - obj of encoded cookies
+     - if no cookie -> {} 
+
+  const cookie = cookies.cookieName or 
+  const cookie = cookies[cookieName]  
+   
+# delete cookies
+  
+   res.clearCookie(cookieName,{path:pathForCookie})
+     - clear cookie if all options are match with existing cookie
+     (except maxAge or expires)
 
 
 
+=========== middleware function (MF) =================
+ -> function has access to 
+        - req obj, (req)
+        - res obj and  (res)
+        - next middleware function (next)
 
+ MF # can execute any code 
+    # can change req and res object
+       - add property, functions 
+       # res.newFunction= function(var) {...}
+       -> in one of the route, we can acces new function
+         # res.newFunction(argumen)
+    # end req-res Object
+    # call next MF ( next() )
 
+ussage 
+==> application level
+    app.use(PATH,Callback[callback...])
+    - if path is missed  the MWF will apply to 
+      all routes
 
+    1) app.use(funName) 
+  
+      function funName(req,res,next){
+        --- do staf using req,res objects and
+        if current MF doesn't end req-res cycle
+        it must call 
+        
+        next()
+      }
+  2) app.use(function(req,res,next){
+     ..... code for MW
+  })
 
+  3) MW substack
+     - these callback function can invoke 
+       next('route') to bypass the remaining MWF
+       and jump to next route
+    app.use(function(req,res,next){},function(req,res,next),function(req,res,next))
+    
+    const MWF = [fun1,fun2,fun3]
+    app.use(MWF)
+    app.use(fun1,fun2,fun3)
+
+==> router level
+   router.use (PATH,Callback...)
+     - if path is mised MWF apply to all Routes
+   
+     router = express.Router()
+
+ 1)  router.use( function(req.res,next){
+
+   })
+
+ # app.use(router)
+
+  --> sub-stack MWF
+     - these callback function can invoke
+     next('router') to bypass the remaining MWF
+     and jump to next route
+ 1) router.use(f1(req,res,next){},f2(req,res,next){} ...)
+ 2) router.use(f1,f2,f3)
+ 3) router.use([f1,f2,f3])
+ 
+ # app.use(router)
+ 
+==> error handling middleware 
+
+app.use(function(err,req,res,next){
+
+  - if error happen we can handle it or pass it 
+    to express by invoking
+    # next(err)
+})
 
 
 
