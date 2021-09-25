@@ -94,7 +94,7 @@
     # app.get("endPoints",(req,res)=>{   // endPoint='/', '/about'
      
      res.send(string | Json ...)
-     res.render("target_template", { json passed to templates})
+     res.render("target_views", { json passed to templates})
            target_template -> 'index.html', 'about.hbs',
            json -> {title:'Home' | title:'About', name: 'mike'}
     })
@@ -115,9 +115,59 @@
     we can access json object forward by res.render 
        -<h1>{{title}}</h1>
   
+====== USING express-handlebars view engine =====
+ /views 
+    .home.handlebars 
+      <p> content in home view</p>
+    /layouts
+      .main.handlebars
+          {{{body}}}
+    /partials
+       navbar.handlebars
 
+ 1)  Using the engine factory
+ 
+ var exphbs = require('express-handlebars');
+ app.engine("handlebars",exphbs({...config....}))
+    config = {defaultLayout:main}  // can be false 
+ app.set("view engine","handlebars")
+
+
+ 2) using Instance 
+
+ var hbs = exphbs.create({ /* config */ });
+
+ // Register `hbs.engine` with the Express app.
+ app.engine('handlebars', hbs.engine);
+ app.set('view engine', 'handlebars');
 
  
+ configuration 
+const exphbs = require('express-handlebars');
+
+// Using the engine factory:
+exphbs({ /* config */ });
+    extname = ".handlbars" , (default)  // .hbs
+    layoutsDir = PATH ,-- if default changes
+    partialDir = PATH -- if default changes
+
+// Create an instance:
+exphbs.create({ /* config */ });
+ extname = "handlbars", (default) // .hbs
+ layoutsDir = PATH, -- if default changes
+ partialDir = PATH -- if default changes
+
+
+
+ to change extention
+
+ app.engine ("hbs",exphbs({"extname: ".hbs"}))
+ app.set("view engine","hbs")
+  or
+xx= exphbs.create({extname:"hbs"})
+app.engine ("hbs",xx.engine)
+ app.set("view engine","hbs")
+
 ========================== uploading files  ====================
  
 <form  method="POST" enctype ="multipart/form-data "></form>
