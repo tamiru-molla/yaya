@@ -40,13 +40,7 @@
         })
 
 
-
-
-
-
-
-
-  web server
+ web server
   - modules needed - express
                     - hbs // handlbars
                     - path // core modules
@@ -168,7 +162,14 @@ xx= exphbs.create({extname:"hbs"})
 app.engine ("hbs",xx.engine)
  app.set("view engine","hbs")
 
+
+
+
 ========================== uploading files  ====================
+
+
+
+
  
 <form  method="POST" enctype ="multipart/form-data "></form>
 <input type="file" name="imageFile" accept=".exetName,..." multiple>
@@ -220,6 +221,8 @@ B) from multiple fieldNames
 
 
  =====  processing images
+
+
  app.post("/", upload.single("im"), async(req, res)=>{
    
    fs.renameSync(oldFileName,newFileName);
@@ -227,7 +230,13 @@ B) from multiple fieldNames
    image.resize(320, jimp.AUTO);
    await image.write(`./public/images/thumbnails/${fileInfo.originalname}`)
 
+
+
+
 ============= COOKIE ================= 
+
+
+
 CLIENT SIDE COOKIE 
   # creating cookies
 
@@ -286,7 +295,12 @@ SERVER SIDE COOKIE
 
 
 
-=========== middleware function (MF) =================
+ =========== middleware function (MF) =================
+
+
+
+
+
  -> function has access to 
         - req obj, (req)
         - res obj and  (res)
